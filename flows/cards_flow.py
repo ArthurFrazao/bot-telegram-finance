@@ -102,7 +102,7 @@ def step_total_limit(bot, message):
     except Exception:
         msg = bot.reply_to(message, "Invalid limit. Enter a number greater than 0 (e.g., 2500.00):", reply_markup=markup)
         set_state(user_id, "ask_total_limit", last_message_id=msg.id)
-        bot.register_next_step_handler(msg, step_total_limit)
+        bot.register_next_step_handler(msg, lambda m: step_total_limit(bot, m))
         return
 
     st = get_state(user_id)
